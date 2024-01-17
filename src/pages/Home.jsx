@@ -1,9 +1,26 @@
 import AdminPage from "../components/Admin_Page";
 import { useStoreProviderSelector } from "../storeProvider/store";
+import { useEffect, useState } from "react";
+
 
 export default function Home() {
-    const dataHome = useStoreProviderSelector(state => state);
-    //
+    const data = useStoreProviderSelector(state => state)
+    const [dataHome, setData] = useState([])
+
+    useEffect(()=>{     
+        setData(data)
+        console.log(data)
+    }, [data])
+    
+
+
+
+    useEffect(()=>{
+        console.log(dataHome)
+        console.log(JSON.stringify(dataHome));
+    }, [dataHome])
+    
+    
     //const dataHome = AddStore();
     //console.log(dataHome)
     /*const [dataHome, setData] = useState([])
@@ -16,19 +33,18 @@ export default function Home() {
     useEffect(()=>{
         callAPI()
     }, [])*/
-    const handleDelete = (id) => {
+    
+    const handleDelete = (provider_id) => {
         return async () => {
-            const res = await fetch(`http://localhost:8000/api/employees/${id}`, {
+            const res = await fetch(`http://localhost:8000/delete_provider/${provider_id}`, {
                 method: 'DELETE'
             })
             const body = await res.json()
             console.log(body)
+            window.location.reload();
         }
     }
-    if (dataHome == null){
-        console.log('0')
-        console.log(dataHome)
-    }
+
     return (
         <div>
             <AdminPage />
@@ -44,7 +60,7 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataHome.map((item, index)=> (
+                        {dataHome.map((item, index)=>(
                             <tr key={index}>
                                 <th scope="row">{item.provider_id}</th>
                                 <td>{item.provider_name}</td>
@@ -52,7 +68,7 @@ export default function Home() {
                                 <td>{item.contact_details}</td>
                                 <td>{item.RF}</td>
                                 <td>
-                                    <a href={`/update/${item.provider_id}`} className="btn btn-warning me-3">Update</a>
+                                    <a href={`/update_provider/${item.provider_id}`} className="btn btn-warning me-3">Update</a>
                                     <button type="button" className="btn btn-danger" onClick={handleDelete(item.provider_id)}>Delete</button>
                                 </td>
                             </tr>

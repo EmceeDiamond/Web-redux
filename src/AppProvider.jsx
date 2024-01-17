@@ -11,6 +11,8 @@ import GetProduct from './pages/GetProduct'
 import AddProducts from './pages/AddProducts'
 import Header from './pages/First_Pages'
 import Admin from './pages/Admin'
+import UpdateProvider from './pages/UpdateProvider'
+import UpdateProduct from './pages/UpdateProduct'
 //import AddProducts from './pages/AddProducts'
 //import UpdateEmployee from './pages/UpdateEmployee'
 //import GetProduct  from  './pages/GetProducts'
@@ -19,7 +21,8 @@ import Admin from './pages/Admin'
 
 
 function AppProvider() {
-
+  //const dataProvider = useStoreProviderSelector(state => state)
+  //const dataProduct = useStoreProductSelector(state => state)
   return (
     <>
       <BrowserRouter>
@@ -30,6 +33,8 @@ function AppProvider() {
           <Route path='/add_provider' element={<AddEmployee />} />
           <Route path='/admin/get_product' element={<GetProduct/>} />
           <Route path='/add_product' element={<AddProducts />} />
+          <Route path='/update_provider/:provider_id' element={ <UpdateProvider /> } />
+          <Route path='/update_product/:element_id' element={ <UpdateProduct /> } />
         </Routes>
       </BrowserRouter>
     </>

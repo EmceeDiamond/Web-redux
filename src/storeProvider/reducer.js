@@ -12,8 +12,7 @@ export default function reducer(state, action) {
         contact_details: action.payload.contact_details,
         RF: action.payload.RF,
       }];
-      default:
-        console.log(state)
-        return state;
+    default:
+      return state;
     }
 }

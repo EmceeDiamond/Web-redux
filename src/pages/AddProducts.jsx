@@ -2,25 +2,28 @@ import { Product } from "./Product"
 import { HeadlinesProduct } from "./Headlines_Product"
 import { useStoreProductSelector } from "../storeProduct/store"
 import {useNavigate} from 'react-router-dom';
+import { initialStateProduct } from "../storeProduct/store";
+
 
 export default function AddProducts() {
     const navigate = useNavigate()
     const data = useStoreProductSelector(state => state);
-    console.log(data)
+    //const [dataID, setDataID] = useState(0)
+
+    var difference = data.filter(x => initialStateProduct.indexOf(x) === -1);
+    console.log(difference)
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(data)
         const res = await fetch("http://localhost:8000/add_products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(difference)
         })
         const body = await res.json([])
         console.log(body)
-        console.log(data)
         navigate("/get")
     }
     /*render() {

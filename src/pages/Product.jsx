@@ -27,7 +27,6 @@ const handleSubmit = async (e) => {
     console.log(amount_ctr);
     if (data.element_name !== "" && data.price !== "" && data.deadline !== ""){
         dispatch(actions.addProduct({
-            provider_id: 2,
            // element_id:3,
             element_name: data.element_name,
             quantity:500,

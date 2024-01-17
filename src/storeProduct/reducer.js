@@ -5,12 +5,12 @@ import * as actions from './actionTypes.js';
 
 
 
-export default function reducer(state, action) {
+export default function reducerProduct(state = [], action) {
   switch (action.type) {
     case actions.PRODUCT_ADD:
       return [...state, {
         //id: lastId++,
-        provider_id: action.payload.provider_id,
+        //provider_id: action.payload.provider_id,
         //element_id: action.payload.element_id,
         element_name: action.payload.element_name,
         quantity: action.payload.quantity,
@@ -19,7 +19,6 @@ export default function reducer(state, action) {
         deadline: action.payload.deadline,
       }];
       default:
-        console.log(state)
         return state;
     }
 }
